@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Diário - VallePrime</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            grid-column: 1 / -1;
+            opacity: 0.9;
+        }
+
+        h2 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section h3 {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        input {
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input:hover {
+            border-color: #cbd5e0;
+        }
+
+        .preview-card {
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .preview-content {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            border: 2px solid #e2e8f0;
+            min-height: 400px;
+        }
+
+        .copy-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        }
+
+        .copy-btn::before {
+            content: '📋 ';
+        }
+
+        .copy-btn.copied::before {
+            content: '✅ ';
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-card {
+                position: static;
+                max-height: none;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.8);
+        }
+
+        .header-inputs {
+            grid-column: 1 / -1;
+        }
+
+        .header-inputs .form-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Relatório Diário VallePrime</h1>
+        <p class="subtitle">Gere mensagens formatadas para WhatsApp</p>
+
+        <div class="card header-inputs">
+            <h2>Informações Básicas</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="empresa">Número da Empresa</label>
+                    <input type="text" id="empresa" placeholder="Ex: 6">
+                </div>
+                <div class="form-group">
+                    <label for="obra">Número da Obra</label>
+                    <input type="text" id="obra" placeholder="Ex: 70400">
+                </div>
+                <div class="form-group">
+                    <label for="empreendimento">Nome do Empreendimento</label>
+                    <input type="text" id="empreendimento" placeholder="Ex: Residencial Prime">
+                </div>
+                <div class="form-group">
+                    <label for="data">Data do Relatório</label>
+                    <input type="date" id="data">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Vendas e Cancelamentos</h2>
+            
+            <div class="form-section">
+                <h3>Vendas do Dia</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="qtd_vendas_dia">Quantidade</label>
+                        <input type="number" id="qtd_vendas_dia" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="val_vendas_dia">Valor (R$)</label>
+                        <input type="number" id="val_vendas_dia" value="0" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Vendas do Mês</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="qtd_vendas_mes">Quantidade</label>
+                        <input type="number" id="qtd_vendas_mes" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="val_vendas_mes">Valor (R$)</label>
+                        <input type="number" id="val_vendas_mes" value="0" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Cancelamentos do Dia</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="qtd_cancel_dia">Quantidade</label>
+                        <input type="number" id="qtd_cancel_dia" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="val_cancel_dia">Valor (R$)</label>
+                        <input type="number" id="val_cancel_dia" value="0" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Cancelamentos do Mês</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="qtd_cancel_mes">Quantidade</label>
+                        <input type="number" id="qtd_cancel_mes" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="val_cancel_mes">Valor (R$)</label>
+                        <input type="number" id="val_cancel_mes" value="0" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Totais e Financeiro</h2>
+            
+            <div class="form-section">
+                <h3>Totais Gerais</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="qtd_total_vendas">Total de Vendas</label>
+                        <input type="number" id="qtd_total_vendas" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="val_total_vendas">Valor Total (R$)</label>
+                        <input type="number" id="val_total_vendas" value="0" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Contas</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="val_cta_receber">Contas a Receber (R$)</label>
+                        <input type="number" id="val_cta_receber" value="0" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="val_cta_recebidas">Contas Recebidas (R$)</label>
+                        <input type="number" id="val_cta_recebidas" value="0" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Médias</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="media_parcela_geral">Média Parcela Geral (R$)</label>
+                        <input type="number" id="media_parcela_geral" value="0" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="media_parcela_atual">Média Parcela Atual (R$)</label>
+                        <input type="number" id="media_parcela_atual" value="0" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="media_qtd_parcelas">Média Qtd. Parcelas</label>
+                        <input type="number" id="media_qtd_parcelas" value="0" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card preview-card">
+            <h2>📱 Preview da Mensagem</h2>
+            <div class="preview-content" id="preview">
+                Preencha os campos para gerar a mensagem...
+            </div>
+            <button class="copy-btn" id="copyBtn">Copiar Mensagem</button>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('data').valueAsDate = new Date();
+
+        // Format currency to Brazilian Real
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        // Format number with thousands separator
+        function formatNumber(value) {
+            return new Intl.NumberFormat('pt-BR').format(value);
+        }
+
+        // Generate WhatsApp message
+        function generateMessage() {
+            const empresa = document.getElementById('empresa').value || '[EMPRESA]';
+            const obra = document.getElementById('obra').value || '[OBRA]';
+            const empreendimento = document.getElementById('empreendimento').value || '[EMPREENDIMENTO]';
+            const data = document.getElementById('data').value;
+            
+            const qtdVendasDia = parseInt(document.getElementById('qtd_vendas_dia').value) || 0;
+            const valVendasDia = parseFloat(document.getElementById('val_vendas_dia').value) || 0;
+            const qtdVendasMes = parseInt(document.getElementById('qtd_vendas_mes').value) || 0;
+            const valVendasMes = parseFloat(document.getElementById('val_vendas_mes').value) || 0;
+            
+            const qtdCancelDia = parseInt(document.getElementById('qtd_cancel_dia').value) || 0;
+            const valCancelDia = parseFloat(document.getElementById('val_cancel_dia').value) || 0;
+            const qtdCancelMes = parseInt(document.getElementById('qtd_cancel_mes').value) || 0;
+            const valCancelMes = parseFloat(document.getElementById('val_cancel_mes').value) || 0;
+            
+            const qtdTotalVendas = parseInt(document.getElementById('qtd_total_vendas').value) || 0;
+            const valTotalVendas = parseFloat(document.getElementById('val_total_vendas').value) || 0;
+            const valCtaReceber = parseFloat(document.getElementById('val_cta_receber').value) || 0;
+            const valCtaRecebidas = parseFloat(document.getElementById('val_cta_recebidas').value) || 0;
+            
+            const mediaParcelaGeral = parseFloat(document.getElementById('media_parcela_geral').value) || 0;
+            const mediaParcelaAtual = parseFloat(document.getElementById('media_parcela_atual').value) || 0;
+            const mediaQtdParcelas = parseFloat(document.getElementById('media_qtd_parcelas').value) || 0;
+
+            // Format date
+            let dataFormatada = 'Data não informada';
+            if (data) {
+                const dateObj = new Date(data + 'T00:00:00');
+                dataFormatada = dateObj.toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            }
+
+            const message = `📊 *RELATÓRIO DIÁRIO - ${empreendimento.toUpperCase()}*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📅 *Data:* ${dataFormatada}
+🏢 *Empresa:* ${empresa}
+🏗️ *Obra:* ${obra}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💰 *VENDAS DO DIA*
+├ Quantidade: ${qtdVendasDia}
+└ Valor: ${formatCurrency(valVendasDia)}
+
+📈 *VENDAS DO MÊS*
+├ Quantidade: ${qtdVendasMes}
+└ Valor: ${formatCurrency(valVendasMes)}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ *CANCELAMENTOS DO DIA*
+├ Quantidade: ${qtdCancelDia}
+└ Valor: ${formatCurrency(valCancelDia)}
+
+📉 *CANCELAMENTOS DO MÊS*
+├ Quantidade: ${qtdCancelMes}
+└ Valor: ${formatCurrency(valCancelMes)}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 *TOTAIS ACUMULADOS*
+├ Total de Vendas: ${qtdTotalVendas}
+└ Valor Total: ${formatCurrency(valTotalVendas)}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💳 *FINANCEIRO*
+├ Contas a Receber: ${formatCurrency(valCtaReceber)}
+└ Contas Recebidas: ${formatCurrency(valCtaRecebidas)}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 *MÉDIAS*
+├ Média Parcela Geral: ${formatCurrency(mediaParcelaGeral)}
+├ Média Parcela Atual: ${formatCurrency(mediaParcelaAtual)}
+└ Média Qtd. Parcelas: ${mediaQtdParcelas.toFixed(1)}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ *VallePrime - Realizando Sonhos*`;
+
+            return message;
+        }
+
+        // Update preview
+        function updatePreview() {
+            const preview = document.getElementById('preview');
+            preview.textContent = generateMessage();
+        }
+
+        // Copy to clipboard
+        async function copyToClipboard() {
+            const message = generateMessage();
+            const btn = document.getElementById('copyBtn');
+            
+            try {
+                await navigator.clipboard.writeText(message);
+                btn.textContent = 'Copiado!';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.textContent = 'Copiar Mensagem';
+                    btn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = message;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    btn.textContent = 'Copiado!';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        btn.textContent = 'Copiar Mensagem';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    alert('Erro ao copiar. Por favor, copie manualmente.');
+                }
+                
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // Add event listeners to all inputs
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', updatePreview);
+        });
+
+        // Copy button
+        document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
+
+        // Initial preview
+        updatePreview();
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+.lote-card {
+    background: var(--white);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+}
+
+.lote-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.lote-card:hover::before {
+    opacity: 1;
+}
+
+.lote-card:hover {
+    border-color: var(--primary-solid);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-8px) scale(1.02);
+}
+
+.lote-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-bottom: 2px solid var(--gray-100);
+}
+
+.lote-id {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lote-quadra {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.lote-numero {
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+.lote-status {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: var(--transition-fast);
+}
+
+.lote-card:hover .lote-status {
+    transform: scale(1.05);
+}
+
+.status-disponivel {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: var(--white);
+}
+
+.status-reservado {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: var(--white);
+}
+
+.status-vendido {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: var(--white);
+}
+
+.status-quitado {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--white);
+}
+
+.status-fora {
+    background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
+    color: var(--white);
+}
+
+.lote-body {
+    padding: 20px;
+}
+
+.lote-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.lote-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lote-info-label {
+    font-size: 11px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.lote-info-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.lote-logradouro {
+    font-size: 13px;
+    color: var(--gray-600);
+    padding-top: 16px;
+    border-top: 2px solid var(--gray-100);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lote-footer {
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid var(--gray-100);
+}
+
+.lote-preco {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+.btn-detalhes {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-detalhes:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-detalhes:active {
+    transform: translateY(0);
+}

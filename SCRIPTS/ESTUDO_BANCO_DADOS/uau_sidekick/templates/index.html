@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAU Sidekick | Gerador de Contratos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="logo-accent">UAU</span> Sidekick
+            </div>
+            <div class="status-badge">Conectado: VallePrime</div>
+        </header>
+
+        <main>
+            <h1>Gerador de Contratos</h1>
+            <p class="subtitle">Emissão rápida de termos e contratos individuais</p>
+            
+            <section class="filters-container">
+                <div class="filter-group">
+                    <label for="empresaFilter">Empresa</label>
+                    <select id="empresaFilter">
+                        <option value="">Todas</option>
+                        <!-- Injetado via JS -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="obraFilter">Obra / Empreendimento</label>
+                    <select id="obraFilter">
+                        <option value="">Todas</option>
+                        <!-- Injetado via JS -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Busca Rápida</label>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Nome ou Nº Venda</div>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Digite o nome do cliente ou número da venda...">
+                    <button id="searchBtn">Pesquisar</button>
+                </div>
+            </section>
+
+            <section class="results-section" id="resultsSection">
+                <div class="section-header">
+                    <h2>Vendas Encontradas</h2>
+                    <span id="resultCount" style="font-weight:600; color: var(--primary);">0</span>
+                </div>
+                <div class="results-grid" id="resultsGrid">
+                    <div class="empty-state">Use os filtros acima para buscar vendas no banco.</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal -->
+        <div class="modal" id="generateModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Gerar Documento</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-bottom: 15px;">Cliente: <strong id="modalClientName" style="color: var(--primary-dark);"></strong></p>
+                    
+                    <div class="template-selector">
+                        <label style="font-weight: 600; display: block; margin-bottom: 5px;">Selecione o Modelo:</label>
+                        <select id="templateSelect">
+                            <option value="">Escolha um arquivo .docx...</option>
+                            <option value="TERMO DE QUITAÇÃO.docx">Termo de Quitação</option>
+                            <option value="TRANSFERENCIA.docx">Transferência</option>
+                            <option value="CONTRATO PADRAO.docx">Contrato Particular</option>
+                        </select>
+                    </div>
+
+                    <div class="generation-status" id="genStatus" style="margin-top: 20px; font-weight: 600;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelBtn" class="btn-secondary">Voltar</button>
+                    <button id="confirmGenBtn" class="btn-primary">Gerar e Baixar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

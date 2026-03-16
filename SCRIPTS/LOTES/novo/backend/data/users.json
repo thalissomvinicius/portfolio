@@ -1,0 +1,58 @@
+[
+  {
+    "id": "admin-1",
+    "username": "admin",
+    "password": "admin123",
+    "nome": "Administrador",
+    "role": "admin",
+    "modulos": [
+      "all"
+    ]
+  },
+  {
+    "id": "1037d7f8-fa32-4460-add1-910e870be40d",
+    "username": "lais.paiva",
+    "password": "lais123",
+    "nome": "Lais Paiva - Prime",
+    "role": "user",
+    "modulos": [
+      "loteamento",
+      "evolucao",
+      "boletos",
+      "recebimentos",
+      "inadimplentes",
+      "corretores",
+      "relatorio-corretor",
+      "consulta",
+      "disponibilidades",
+      "contratos",
+      "quitacao",
+      "mensagens",
+      "feedbacks",
+      "sobre"
+    ]
+  },
+  {
+    "id": "e434ea7d-bc3c-43e7-826c-959c5e8662a2",
+    "username": "teste",
+    "password": "teste123",
+    "nome": "Teste",
+    "role": "user",
+    "modulos": [
+      "loteamento",
+      "evolucao",
+      "boletos",
+      "recebimentos",
+      "inadimplentes",
+      "corretores",
+      "relatorio-corretor",
+      "consulta",
+      "disponibilidades",
+      "contratos",
+      "quitacao",
+      "mensagens",
+      "feedbacks",
+      "sobre"
+    ]
+  }
+]

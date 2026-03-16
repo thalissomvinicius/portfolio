@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dark: #0a0a0c;
+  --bg-card: rgba(22, 22, 26, 0.7);
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-purple: #8b5cf6;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+}
+
+body {
+  @apply bg-[#0a0a0c] text-slate-100 antialiased;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+  min-height: 100vh;
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-lg border border-white/10;
+}
+
+.glass-card {
+  @apply bg-[#16161a]/60 backdrop-blur-xl border border-white/5 shadow-2xl p-6 md:p-8;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400;
+}
+
+.btn-primary {
+  @apply px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 transition-all font-medium flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-xl glass hover:bg-white/10 transition-all font-medium flex items-center gap-2 active:scale-95;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-[#0a0a0c];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-800 rounded-full border-2 border-[#0a0a0c] hover:bg-slate-700 transition-colors;
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

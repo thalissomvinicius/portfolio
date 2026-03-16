@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valle Prime - Portal do Corretor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="../Valle-logo-azul.png" alt="Valle" class="logo">
+                <span class="portal-name">Portal do Corretor</span>
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav-link active">Lotes</a>
+                <a href="../propostatest.html" class="nav-link" target="_blank">Nova Proposta</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Filters Section -->
+        <section class="filters-section">
+            <h1 class="page-title">Consulta de Lotes</h1>
+
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Empreendimento</label>
+                    <select id="empreendimento" class="filter-select">
+                        <option value="625">Valle dos Ipês - Penápolis/SP</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Status</label>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">Todos</option>
+                        <option value="disponivel">Disponível</option>
+                        <option value="reservado">Reservado</option>
+                        <option value="vendido">Vendido</option>
+                        <option value="quitado">Quitado</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Quadra</label>
+                    <select id="quadraFilter" class="filter-select">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Buscar</label>
+                    <input type="text" id="searchInput" class="filter-input" placeholder="Lote, logradouro...">
+                </div>
+
+                <button id="btnBuscar" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    Buscar
+                </button>
+            </div>
+        </section>
+
+        <!-- Stats Cards -->
+        <section class="stats-section">
+            <div class="stat-card stat-total">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="totalLotes">0</span>
+                    <span class="stat-label">Total de Lotes</span>
+                </div>
+            </div>
+            <div class="stat-card stat-disponivel">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="lotesDisponiveis">0</span>
+                    <span class="stat-label">Disponíveis</span>
+                </div>
+            </div>
+            <div class="stat-card stat-reservado">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="lotesReservados">0</span>
+                    <span class="stat-label">Reservados</span>
+                </div>
+            </div>
+            <div class="stat-card stat-vendido">
+                <div class="stat-icon">🏠</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="lotesVendidos">0</span>
+                    <span class="stat-label">Vendidos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <div class="results-header">
+                <h2 class="results-title">Lotes Encontrados: <span id="resultCount">0</span></h2>
+                <div class="view-toggle">
+                    <button id="viewGrid" class="view-btn active" title="Visualização em grade">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </button>
+                    <button id="viewList" class="view-btn" title="Visualização em lista">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="3" y="4" width="18" height="3"></rect>
+                            <rect x="3" y="10.5" width="18" height="3"></rect>
+                            <rect x="3" y="17" width="18" height="3"></rect>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="lotesContainer" class="lotes-grid">
+                <!-- Cards serão inseridos aqui via JavaScript -->
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Carregando lotes...</p>
+            </div>
+
+            <div id="noResults" class="no-results" style="display: none;">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <p>Nenhum lote encontrado com os filtros selecionados.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Detalhes -->
+    <div id="loteModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody">
+                <!-- Conteúdo do modal será inserido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
