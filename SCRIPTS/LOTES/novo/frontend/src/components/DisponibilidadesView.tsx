@@ -246,49 +246,23 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
     }
 
     return (
-        <div className="animate-fade-in">
+        <div className="animate-fade-in disponibilidades-view">
             {/* Header */}
-            <div style={{
-                background: 'linear-gradient(135deg, #00528F 0%, #0089D6 50%, #00A5FF 100%)',
-                borderRadius: '20px',
-                padding: '32px',
-                marginBottom: '24px',
-                position: 'relative',
-                overflow: 'hidden'
-            }}>
-                <div style={{
-                    position: 'absolute',
-                    top: '-50px',
-                    right: '-50px',
-                    width: '200px',
-                    height: '200px',
-                    borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(140, 198, 62, 0.2) 0%, transparent 70%)',
-                    filter: 'blur(40px)'
-                }} />
+            <div className="disponibilidades-hero">
+                <div className="disponibilidades-hero-glow" />
 
-                <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '16px' }}>
-                    <div style={{
-                        width: '56px',
-                        height: '56px',
-                        borderRadius: '16px',
-                        background: 'rgba(255,255,255,0.15)',
-                        backdropFilter: 'blur(10px)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        border: '1px solid rgba(255,255,255,0.2)'
-                    }}>
+                <div className="disponibilidades-hero-content">
+                    <div className="disponibilidades-hero-icon">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style={{ color: 'white' }}>
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
                     <div>
-                        <h1 style={{ fontSize: '32px', fontWeight: 800, color: 'white', margin: 0, letterSpacing: '-0.5px' }}>
+                        <h1 className="disponibilidades-hero-title">
                             Disponibilidades
                         </h1>
-                        <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.8)', margin: 0 }}>
+                        <p className="disponibilidades-hero-subtitle">
                             Lista de lotes e simulação de financiamento
                         </p>
                     </div>
@@ -297,7 +271,7 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
 
             {/* Cards de Resumo */}
             {resumo && (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '16px', marginBottom: '24px' }}>
+                <div className="disponibilidades-resumo-grid" style={{ display: 'grid', gap: '16px', marginBottom: '24px' }}>
                     <div className="card" style={{ textAlign: 'center', borderLeft: '4px solid #8CC63E' }}>
                         <div style={{ fontSize: '12px', color: '#6B7280', marginBottom: '4px' }}>DISPONÍVEIS</div>
                         <div style={{ fontSize: '28px', fontWeight: 700, color: '#8CC63E' }}>{resumo.disponivel}</div>
@@ -325,14 +299,13 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
             )}
 
             {/* Filtros */}
-            <div className="filter-bar" style={{ marginBottom: '24px' }}>
+            <div className="filter-bar disponibilidades-filter-bar" style={{ marginBottom: '12px' }}>
                 <div className="filter-group">
                     <label className="filter-label">Status</label>
                     <select
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value === 'todos' ? 'todos' : parseInt(e.target.value))}
-                        className="filter-input"
-                        style={{ width: '180px' }}
+                        className="filter-input disponibilidades-filter-input"
                     >
                         <option value="todos">Todos</option>
                         {Object.entries(STATUS_CONFIG).map(([code, config]) => (
@@ -347,11 +320,10 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Quadra, lote ou cliente..."
-                        className="filter-input"
-                        style={{ width: '250px' }}
+                        className="filter-input disponibilidades-filter-input disponibilidades-filter-search"
                     />
                 </div>
-                <button onClick={loadData} className="btn btn-primary" style={{ padding: '10px 16px' }}>
+                <button onClick={loadData} className="btn btn-primary disponibilidades-btn-atualizar">
                     🔄 Atualizar
                 </button>
                 <button
@@ -360,22 +332,13 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
                         const usuarioParam = `&usuario=${encodeURIComponent('Sistema Valle')}`;
                         window.open(`/api/disponibilidades/pdf?empresa=${empresa}&obra=${obra}${statusParam}${usuarioParam}`, '_blank');
                     }}
-                    style={{
-                        padding: '10px 16px',
-                        background: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '8px',
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px'
-                    }}
+                    className="disponibilidades-btn-pdf"
                 >
                     📄 Exportar PDF
                 </button>
+            </div>
+            <div className="disponibilidades-results-counter">
+                Exibindo <strong>{filteredLotes.length}</strong> de <strong>{lotes.length}</strong> lotes
             </div>
 
             {/* Tabela de Lotes */}
@@ -384,29 +347,26 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
                     <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
                         <thead>
                             <tr style={{ background: 'linear-gradient(135deg, #00528F 0%, #0089D6 100%)' }}>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'left' }}>Quadra</th>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'left' }}>Lote</th>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'left' }}>Identificador</th>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'center' }}>Status</th>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'right' }}>Área (m²)</th>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'right' }}>Valor</th>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'left' }}>Cliente</th>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'center' }}>Venda</th>
-                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'center' }}>Ação</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'left', position: 'sticky', top: 0, zIndex: 2 }}>Quadra</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'left', position: 'sticky', top: 0, zIndex: 2 }}>Lote</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'left', position: 'sticky', top: 0, zIndex: 2 }}>Identificador</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'center', position: 'sticky', top: 0, zIndex: 2 }}>Status</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'right', position: 'sticky', top: 0, zIndex: 2 }}>Área (m²)</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'right', position: 'sticky', top: 0, zIndex: 2 }}>Valor</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'left', position: 'sticky', top: 0, zIndex: 2 }}>Cliente</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'center', position: 'sticky', top: 0, zIndex: 2 }}>Venda</th>
+                                <th style={{ padding: '14px 12px', color: 'white', fontWeight: 600, textAlign: 'center', position: 'sticky', top: 0, zIndex: 2 }}>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredLotes.map((lote, index) => {
                                 const config = STATUS_CONFIG[lote.status] || STATUS_CONFIG[8];
                                 return (
-                                    <tr key={index} style={{
+                                    <tr key={index} className="disponibilidades-row" style={{
                                         background: index % 2 === 0 ? 'white' : '#F8FAFC',
                                         borderBottom: '1px solid #E2E8F0',
                                         transition: 'background 0.15s'
-                                    }}
-                                        onMouseEnter={(e) => e.currentTarget.style.background = '#EBF8FF'}
-                                        onMouseLeave={(e) => e.currentTarget.style.background = index % 2 === 0 ? 'white' : '#F8FAFC'}
-                                    >
+                                    }}>
                                         <td style={{ padding: '12px', fontWeight: 600, color: '#1F2A33' }}>{lote.quadra}</td>
                                         <td style={{ padding: '12px', fontWeight: 600, color: '#1F2A33' }}>{lote.lote}</td>
                                         <td style={{ padding: '12px', color: '#6B7280', fontSize: '12px' }}>{lote.identificador}</td>
@@ -455,9 +415,17 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
                                     </tr>
                                 );
                             })}
+                            {filteredLotes.length === 0 && (
+                                <tr>
+                                    <td colSpan={9} style={{ padding: '32px 16px', textAlign: 'center', color: '#64748B', fontSize: '14px' }}>
+                                        Nenhum lote encontrado com os filtros atuais
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                         {/* Footer com totais */}
                         <tfoot>
+                            {filteredLotes.length > 0 && (
                             <tr style={{ background: '#F0FDF4', fontWeight: 700 }}>
                                 <td colSpan={4} style={{ padding: '14px 12px', textAlign: 'right', color: '#1F2A33' }}>
                                     TOTAL: {filteredLotes.length} lotes
@@ -470,17 +438,11 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
                                 </td>
                                 <td colSpan={3}></td>
                             </tr>
+                            )}
                         </tfoot>
                     </table>
                 </div>
             </div>
-
-            {filteredLotes.length === 0 && (
-                <div className="empty-state">
-                    <div className="empty-state-icon">🏠</div>
-                    <p>Nenhum lote encontrado com os filtros selecionados</p>
-                </div>
-            )}
 
             {/* Modal de Simulação */}
             {showSimulacao && selectedLote && (
@@ -554,7 +516,7 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
                         </div>
 
                         {/* Campos de entrada */}
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginBottom: '24px' }}>
+                        <div className="disponibilidades-modal-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginBottom: '24px' }}>
                             <div>
                                 <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#6B7280', marginBottom: '6px' }}>
                                     PARCELAS DO SINAL
@@ -695,7 +657,7 @@ export const DisponibilidadesView: React.FC<DisponibilidadesViewProps> = ({ empr
                                 </div>
 
                                 {/* Botões de ação */}
-                                <div style={{ display: 'flex', gap: '12px' }}>
+                                <div className="disponibilidades-modal-actions" style={{ display: 'flex', gap: '12px' }}>
                                     <button
                                         onClick={() => setShowMensagem(!showMensagem)}
                                         style={{
