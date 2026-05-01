@@ -258,7 +258,7 @@ ${p.link ? `\n[!] Digite "open ${command}" para abrir o projeto.` : ''}`;
         break;
       case 'contact':
         output = `WhatsApp: 91 99169-7664
-GitHub: github.com/thalissomvinicius`;
+GitHub: github.com/thalissomvinicius/portfolio`;
         break;
       case 'clear':
         setHistory([]);
@@ -372,7 +372,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
               <span className="flex items-center gap-1.5"><Phone className="w-3 h-3 text-blue-500" /> (91) 99169-7664</span>
             </div>
             <div className="mt-2 text-[10px] md:text-xs font-medium text-slate-400 flex items-center gap-1.5 justify-center md:justify-start">
-              <Github className="w-3 h-3" /> github.com/thalissomvinicius
+              <Github className="w-3 h-3" /> github.com/thalissomvinicius/portfolio
             </div>
           </div>
         </header>
@@ -477,8 +477,8 @@ const ResumeModal = ({ isOpen, onClose }) => {
               <h2 className="text-sm font-black uppercase tracking-widest text-blue-600 mb-4 border-b-2 border-blue-100 pb-2">Formação Acadêmica</h2>
               <div className="space-y-2">
                 <div>
-                  <h3 className="font-bold text-sm text-slate-900 line-clamp-1">Ensino Superior (Incompleto)</h3>
-                  <p className="text-xs text-slate-600">Ciências Contábeis</p>
+                  <h3 className="font-bold text-sm text-slate-900 line-clamp-1">Ciências Contábeis</h3>
+                  <p className="text-xs text-slate-600">8º semestre em andamento</p>
                 </div>
                 <div>
                   <h3 className="font-bold text-sm text-slate-900">Ensino Médio Completo</h3>
@@ -688,7 +688,7 @@ const App = () => {
                 <a href="#projects" className="w-full sm:w-auto btn-primary text-base md:text-lg px-8 rounded-2xl justify-center">
                   Explorar Projetos <ArrowRight className="w-5 h-5" />
                 </a>
-                <a href="https://github.com/thalissomvinicius" target="_blank" className="w-full sm:w-auto btn-secondary text-base md:text-lg px-8 rounded-2xl justify-center">
+                <a href="https://github.com/thalissomvinicius/portfolio" target="_blank" className="w-full sm:w-auto btn-secondary text-base md:text-lg px-8 rounded-2xl justify-center">
                   GitHub <Github className="w-5 h-5" />
                 </a>
               </div>
@@ -717,7 +717,7 @@ const App = () => {
               </p>
               <p>
                 <span className="text-blue-400 font-bold block mb-2 underline decoration-blue-500/50">Formação Acadêmica:</span>
-                Parei no 7º semestre de <span className="text-slate-100">Ciências Contábeis</span> e tranquei a universidade no <span className="text-slate-100 font-bold">8º semestre</span>. Esta base contábil me dá autoridade para falar de SPED, IRPJ, Conciliação e Compliance com qualquer diretor financeiro.
+                Atualmente cursando o <span className="text-slate-100 font-bold">8º semestre</span> de <span className="text-slate-100">Ciências Contábeis</span>. Esta base contábil me dá autoridade para falar de SPED, IRPJ, Conciliação e Compliance com qualquer diretor financeiro.
               </p>
               <p>
                 Além de desenvolvedor, sou especialista em <span className="text-slate-100 font-semibold">Organização, Logística de Dados e Processos Administrativos</span>. Minha fome é por alavancar resultados através da ordem e da eficiência técnica.
@@ -937,12 +937,12 @@ const App = () => {
                   <div className="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center mb-8">
                     <Briefcase className="w-10 h-10 text-blue-400" />
                   </div>
-                  <h4 className="font-black text-2xl mb-4">Quase Contador (8º Semestre)</h4>
+                  <h4 className="font-black text-2xl mb-4">Ciências Contábeis (8º Semestre)</h4>
                   <p className="text-slate-400 leading-relaxed max-w-sm">
                     Domínio de princípios contábeis, análise de balanço e compliance fiscal aplicados à automação de dados. Minha linguagem é técnica, meus resultados são contábeis.
                   </p>
                   <div className="mt-8 flex gap-2">
-                    <div className="px-4 py-2 bg-blue-500/10 rounded-full text-[10px] font-black text-blue-400 uppercase tracking-widest">7/8 Semestres</div>
+                    <div className="px-4 py-2 bg-blue-500/10 rounded-full text-[10px] font-black text-blue-400 uppercase tracking-widest">8º Semestre</div>
                     <div className="px-4 py-2 bg-blue-500/10 rounded-full text-[10px] font-black text-blue-400 uppercase tracking-widest">Contabilidade Completa</div>
                   </div>
                 </div>
@@ -969,7 +969,7 @@ const App = () => {
                 <a href="mailto:vinicius.devcode.br@gmail.com" className="w-16 h-16 rounded-2xl glass flex items-center justify-center hover:bg-slate-800 transition-all hover:scale-110 border border-white/10" title="Enviar E-mail">
                   <Mail className="w-8 h-8 text-white" />
                 </a>
-                <a href="https://github.com/thalissomvinicius" target="_blank" className="w-16 h-16 rounded-2xl glass flex items-center justify-center hover:bg-slate-800 transition-all hover:scale-110 border border-white/10" title="GitHub">
+                <a href="https://github.com/thalissomvinicius/portfolio" target="_blank" className="w-16 h-16 rounded-2xl glass flex items-center justify-center hover:bg-slate-800 transition-all hover:scale-110 border border-white/10" title="GitHub">
                   <Github className="w-8 h-8 text-white" />
                 </a>
               </div>

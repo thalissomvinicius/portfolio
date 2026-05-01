@@ -22,15 +22,15 @@ Desenvolvedor Junior com um perfil híbrido raro: **Tecnologia + Inteligência d
 
 ## 🌟 Projetos em Destaque
 
-### 📈 [War Room](https://github.com/thalissomvinicius/dev)
+### 📈 [War Room](https://github.com/thalissomvinicius/portfolio)
 Um complemento estratégico ao ERP UAU. Dashboard em Python que resolve lacunas de relatórios e gestão de boletos.
 - **Impacto**: Redução de tempo em processos manuais críticos de 20min para 5seg.
 
-### 🏠 [VallePrime](https://github.com/thalissomvinicius/dev)
+### 🏠 [VallePrime](https://github.com/thalissomvinicius/portfolio)
 Sistema de disponibilidade em tempo real para corretores.
 - **Impacto**: 400+ acessos na primeira semana de lançamento.
 
-### 📄 [Pixel-Perfect](https://github.com/thalissomvinicius/dev)
+### 📄 [Pixel-Perfect](https://github.com/thalissomvinicius/portfolio)
 Gerador automático de propostas em PDF com precisão cirúrgica.
 - **Impacto**: Economia de 3 horas diárias de trabalho administrativo.
 
@@ -40,7 +40,7 @@ Gerador automático de propostas em PDF com precisão cirúrgica.
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/thalissomvinicius/dev.git
+   git clone https://github.com/thalissomvinicius/portfolio.git
    ```
 2. Instale as dependências:
    ```bash
