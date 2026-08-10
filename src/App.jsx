@@ -51,6 +51,13 @@ function App() {
             <p>Sou Thalissom Vinicius. Desenvolvo sistemas, dashboards e automações que conectam dados, pessoas e decisões — do escritório ao campo.</p>
             <div className="hero-actions"><a className="primary-button" href="#projetos">Ver projetos <ArrowDownRight size={19} /></a><a className="text-link" href="mailto:vinicius.devcode.br@gmail.com">vinicius.devcode.br@gmail.com <ArrowUpRight size={16} /></a></div>
           </motion.div>
+          <motion.figure className="hero-portrait" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.25 }}>
+            <div className="portrait-frame">
+              <img src={`${import.meta.env.BASE_URL}photo_profile.png`} alt="Thalissom Vinicius" />
+              <span className="portrait-corner" aria-hidden="true">TV</span>
+            </div>
+            <figcaption><span>Thalissom Vinicius</span><small>Desenvolvedor de sistemas</small></figcaption>
+          </motion.figure>
           <motion.div className="hero-status" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}><span>Belém, Pará · Brasil</span><span>Desenvolvimento · Dados · Produto</span></motion.div>
         </section>
 
