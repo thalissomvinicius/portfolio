@@ -58,7 +58,7 @@ function App() {
             </div>
             <figcaption><span>Thalissom Vinicius</span><small>Desenvolvedor de sistemas</small></figcaption>
           </motion.figure>
-          <motion.div className="hero-status" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}><span>Belém, Pará · Brasil</span><span>Desenvolvimento · Dados · Produto</span></motion.div>
+          <motion.div className="hero-status" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}><span>Tomé-Açu, Pará · Brasil</span><span>Desenvolvimento · Dados · Produto</span></motion.div>
         </section>
 
         <section className="statement" id="sobre">
